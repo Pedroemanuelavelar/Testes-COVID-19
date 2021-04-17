@@ -55,7 +55,7 @@ int menu() {
 }
 
 // Mensagem para prosseguir o programa.
-void enter(){
+void enter() {
 
     printf("\n \n");
 
@@ -76,7 +76,7 @@ void endProg() {
     printf("* Vinicius do Carmo Gomes - 6953\n\n");
     printf("-----------------------------------------------------------\n\n");
     printf("Agradecimentos especiais:\n\n");
-    printf("* Joao Lucas Mayrinck D Oliveira\n");
+    printf("* Joao Lucas Mayrinck D'Oliveira\n");
     printf("* Leandro Henrique Furtado Pinto Silva\n");
     printf("* Matheus Nohra Haddad\n\n");
     printf("-----------------------------------------------------------\n\n");

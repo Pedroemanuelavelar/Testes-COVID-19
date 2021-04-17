@@ -19,7 +19,7 @@ int main() {
     Pessoa dataPeople[100]; // Passando uma variavél correspondente ao struct Pessoa para acessar os campos
 
     numeroDeTestes = 0;
-    testesCancelados=0;
+    testesCancelados = 0;
 
     // Enquanto o a opção digitada não for 0 as opções são executadas
     do {
@@ -81,7 +81,7 @@ int main() {
                 aux = removePerson(nome, dataPeople, &numeroDeTestes);
 
                 // verifica se alguma pessoa foi ou não apagada do sistema.
-                if(aux == 1){
+                if(aux == 1) {
 
                     testesCancelados++;
 
