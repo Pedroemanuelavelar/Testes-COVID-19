@@ -5,6 +5,7 @@
     Nome da Base de Dados: testes.c;
 */
 
+
 #include "./components/libs/cadastro.h" // Custom lib
 
 int main() {
@@ -13,10 +14,12 @@ int main() {
     int i, numeroDeTestes;
     int opcao;
     int aux;
+    int testesCancelados;
     char nome[50];
     Pessoa dataPeople[100]; // Passando uma variavél correspondente ao struct Pessoa para acessar os campos
 
     numeroDeTestes = 0;
+    testesCancelados=0;
 
     // Enquanto o a opção digitada não for 0 as opções são executadas
     do {
@@ -62,12 +65,28 @@ int main() {
                 
                 printf("\nInforme um nome para consultar os testes: ");
                 gets(nome);
+                clscr();
 
                 consultTests(nome, dataPeople, numeroDeTestes);
 
             break;
 
             case 3:
+                
+                printf("\nInforme o nome da pessoa que voce deseja apagar do sistema: ");
+                gets(nome);
+                clscr();
+
+                // Remove a pessoa com o nome digitado do sistema.
+                aux = removePerson(nome, dataPeople, &numeroDeTestes);
+
+                // verifica se alguma pessoa foi ou não apagada do sistema.
+                if(aux == 1){
+
+                    testesCancelados++;
+
+                }
+
             break;
 
             case 4:

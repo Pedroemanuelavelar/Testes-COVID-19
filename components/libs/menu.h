@@ -67,6 +67,19 @@ void enter(){
 }
 /* Função de encerramento do programa, endProg (Fim do Programa) */
 void endProg() {
+    
+    printf("Creditos:\n");
+    printf("-----------------------------------------------------------\n\n");
+    printf("Programa Desenvolvido por:\n\n");
+    printf("* Carlos Eduardo Maximo - 6962\n");
+    printf("* Pedro Emanuel de Avelar Sousa de Almeida - 6965\n");
+    printf("* Vinicius do Carmo Gomes - 6953\n\n");
+    printf("-----------------------------------------------------------\n\n");
+    printf("Agradecimentos especiais:\n\n");
+    printf("* Joao Lucas Mayrinck D Oliveira\n");
+    printf("* Leandro Henrique Furtado Pinto Silva\n");
+    printf("* Matheus Nohra Haddad\n\n");
+    printf("-----------------------------------------------------------\n\n");
 
     printf("Pressione \"Enter\" para finalizar o programa\n");
     

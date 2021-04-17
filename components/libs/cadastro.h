@@ -145,7 +145,7 @@ int yearsOld(Pessoa dataDeNascimento) {
 
     }
 
-    day[j] = '\0';
+    year[j] = '\0';
 
     j = 0;
 
@@ -237,7 +237,7 @@ int yearsOld(Pessoa dataDeNascimento) {
 
 }
 
-// Retorna o a posição do nome buscado, caso não econtre retorna -1.
+// Retorna o a posição da pessoa buscado pelo nome digitado, caso não econtre retorna -1.
 int personSearch(char nome[], Pessoa dataPeople[], int numeroDeTestes) {
 
     int i;
@@ -248,10 +248,14 @@ int personSearch(char nome[], Pessoa dataPeople[], int numeroDeTestes) {
 
     // Verificação da igualdade dos nomes.
     for(i = 0; i < numeroDeTestes; i++){
+        
         if(strcmp(nome, dataPeople[i].fullName) == 0){
+
             encontrou_pessoa = 1;
             break;
+
         }
+
     }
 
     if(!encontrou_pessoa){
@@ -268,15 +272,20 @@ void consultTests(char nome[], Pessoa dataPeople[], int numeroDeTestes){
     int posicao;
 
     if(numeroDeTestes == 0){
+        
         printf("\nNenhuma pessoa foi cadastrada no sistema.");
+    
     }else{
 
         // Chama função para retorna a posição da pessoa.
         posicao = personSearch(nome, dataPeople, numeroDeTestes);
 
         if(posicao == -1){
+
             printf("\nPessoa nao encontrada no sistema.");
+
         }else{
+            
             // Imprime as informações da pessoa encontrada no sistema.
             printf("\nNome = %s", dataPeople[posicao].fullName);
             printf("\nCPF = %s", dataPeople[posicao].cpf);
@@ -285,10 +294,54 @@ void consultTests(char nome[], Pessoa dataPeople[], int numeroDeTestes){
             printf("\nSexo = %c", dataPeople[posicao].sexo);
             printf("\nBairro = %s", dataPeople[posicao].bairro);
             printf("\nResultado do teste = %c", dataPeople[posicao].resultadoTeste);
+
         }
 
     }
 
     enter();
+
+}
+
+// Função que apaga uma pessoa cadrastada no sistema.
+int removePerson (char nome[], Pessoa dataPeople[], int *numeroDeTestes){
+
+    int posicao, removido;
+
+    // variavel responsável por dizer se alguma pessoa cadastrada foi removida ou não.
+    removido = 0;
+
+    if(*numeroDeTestes == 0){
+        
+        printf("\nNenhuma pessoa foi cadrastada no sistema.");
+    
+    }else{
+
+        posicao = personSearch(nome, dataPeople, *numeroDeTestes);
+
+        if(posicao == -1){
+
+            printf("\nPessoa nao encontrada no sistema.");
+
+        }else{
+
+            // Inicia da posição da pessoa que desejo apagar e a sobscreve pela pessoa da próxima posição.
+            for(posicao;posicao<*numeroDeTestes;posicao++){
+
+                dataPeople[posicao] = dataPeople[posicao+1];
+
+            }
+
+            (*numeroDeTestes)--;
+            removido = 1;
+            
+            printf("\nInformacoes do(a) %s removidas com sucesso.", nome);
+
+        }
+
+    }
+
+    enter();
+    return removido;
 
 }
