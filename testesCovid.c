@@ -93,7 +93,7 @@ int main() {
 
             case 4:
             
-                // Limpa os "pontinhos" imprimidos.
+                // Efeito limpa os "pontinhos" imprimidos.
                 for(i = 0; i < 2; i++){
 
                     clscr();
@@ -106,7 +106,7 @@ int main() {
                 printf("Arquivo salvo!");
                 enter();
 
-                salvarTestes(dataPeople, numeroDeTestes);
+                savingTests(dataPeople, numeroDeTestes);
 
 
             break;
