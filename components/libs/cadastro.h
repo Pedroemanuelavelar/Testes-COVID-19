@@ -40,7 +40,6 @@ void firstName(char nomeCompleto[], char name[]) {
     /* Evita de imprimir lixo depois do '\0 */
     name[i] = '\0'; 
 
-
 }
 
 /* Função que cadastra novos testes, regNewTests => Registrar novos testes */
@@ -287,7 +286,9 @@ int personSearch(char nome[], Pessoa dataPeople[], int numeroDeTestes) {
     }
 
     if(!encontrou_pessoa) {
+
         return -1;
+
     }
 
     return i;
@@ -303,7 +304,7 @@ void consultTests(char nome[], Pessoa dataPeople[], int numeroDeTestes) {
         
         printf("\nNenhuma pessoa foi cadastrada no sistema.");
     
-    }else {
+    } else {
 
         // Chama função para retorna a posição da pessoa.
         posicao = personSearch(nome, dataPeople, numeroDeTestes);
@@ -312,7 +313,7 @@ void consultTests(char nome[], Pessoa dataPeople[], int numeroDeTestes) {
 
             printf("\nPessoa nao encontrada no sistema.");
 
-        }else {
+        } else {
             
             // Imprime as informações da pessoa encontrada no sistema.
             printf("\nNome = %s", dataPeople[posicao].fullName);
@@ -323,11 +324,11 @@ void consultTests(char nome[], Pessoa dataPeople[], int numeroDeTestes) {
             printf("\nBairro = %s", dataPeople[posicao].bairro);
             printf("\nResultado do teste = %c", dataPeople[posicao].resultadoTeste);
 
-            if(dataPeople[posicao].valido == 1){
+            if(dataPeople[posicao].valido == 1) {
 
                 printf("\nValido = Sim");
 
-            }else{
+            } else {
 
                 printf("\nValido = Nao");
             }
@@ -353,13 +354,13 @@ int removePerson (int posicao, Pessoa dataPeople[], int *numeroDeTestes) {
         
         printf("\nNenhuma pessoa foi cadrastada no sistema.");
     
-    }else {
+    } else {
 
-        if(posicao < 0 || posicao >= *numeroDeTestes){
+        if(posicao < 0 || posicao >= *numeroDeTestes) {
 
             printf("\nPessoa nao encontrada no sistema.");
 
-        }else {
+        } else {
 
             printf("\nNome = %s", dataPeople[posicao].fullName);
             printf("\nCPF = %s", dataPeople[posicao].cpf);
@@ -369,13 +370,14 @@ int removePerson (int posicao, Pessoa dataPeople[], int *numeroDeTestes) {
             printf("\nBairro = %s", dataPeople[posicao].bairro);
             printf("\nResultado do teste = %c", dataPeople[posicao].resultadoTeste);
 
-            if(dataPeople[posicao].valido == 1){
+            if(dataPeople[posicao].valido == 1) {
 
                 printf("\nValido = Sim");
 
-            }else{
+            } else {
 
                 printf("\nValido = Nao");
+
             }
 
             printf("\n\nVoce deseja realmente cancelar essa pessoa do sistema?(Sim ou Nao):\n");
@@ -383,7 +385,7 @@ int removePerson (int posicao, Pessoa dataPeople[], int *numeroDeTestes) {
             strupr(apagar);
             clscr();
 
-            if(apagar[0] == 'S'){
+            if(apagar[0] == 'S') {
             
                 dataPeople[posicao].valido=0;
 
@@ -391,10 +393,12 @@ int removePerson (int posicao, Pessoa dataPeople[], int *numeroDeTestes) {
 
                 removido=1;
 
-            }else{
+            } else {
 
                 printf("\nO teste na posicao %d nao foi cancelado.", posicao);
+
             }
+
         }
 
     }
@@ -406,7 +410,7 @@ int removePerson (int posicao, Pessoa dataPeople[], int *numeroDeTestes) {
 }
 
 // Função responsavel para salver os testes em um "txt".
-void salvarTestes(Pessoa dataPeople[], int numeroDeTestes){
+void salvarTestes(Pessoa dataPeople[], int numeroDeTestes) {
 
     int i;
     char aux;
@@ -423,7 +427,7 @@ void salvarTestes(Pessoa dataPeople[], int numeroDeTestes){
 
         fprintf(arq, "\n\n");
 
-    }else {
+    } else {
 
         // Se ele não existir abre no modo escrita.
         arq = fopen("testes.txt", "w");
@@ -443,15 +447,19 @@ void salvarTestes(Pessoa dataPeople[], int numeroDeTestes){
         fprintf(arq, "\n%d", dataPeople[i].valido); // Retorna valido em bool.
 
         if(i != numeroDeTestes - 1) {
+
             fprintf(arq, "\n\n");
+
         }
+
     }
 
     fclose(arq);
+
 }
 
 // Função responsavel para salver os testes em um "txt".
-void savingTests(Pessoa dataPeople[], int numeroDeTestes){
+void savingTests(Pessoa dataPeople[], int numeroDeTestes) {
    
     int i;
     char aux;
@@ -466,7 +474,7 @@ void savingTests(Pessoa dataPeople[], int numeroDeTestes){
     // Imprime os dados no arquivo "testes.txt".
     for(i = 0; i < numeroDeTestes; i++) {
 
-        if(dataPeople[i].valido){
+        if(dataPeople[i].valido) {
             
             fprintf(arq, "%s", dataPeople[i].fullName); // Nome 
             fprintf(arq, "\n%s", dataPeople[i].cpf); // CPF
@@ -476,12 +484,17 @@ void savingTests(Pessoa dataPeople[], int numeroDeTestes){
             fprintf(arq, "\n%s", dataPeople[i].bairro);// Bairro
             fprintf(arq, "\n%c", dataPeople[i].resultadoTeste); // Resultado do teste
             fprintf(arq, "\n%d", dataPeople[i].valido); // Retorna valido em bool
+
         }
 
         if(i != numeroDeTestes - 1) {
+
             fprintf(arq, "\n\n");
+
         }
+
     }
 
     fclose(arq);
+    
 }
