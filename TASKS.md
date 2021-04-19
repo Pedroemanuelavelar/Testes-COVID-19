@@ -5,7 +5,7 @@
 ## To do
 </br>
 
-- [ ]  Salvar informa ̧c ̃oes em arquivo;
+- [ ]  Salvar informações em arquivo;
 - [ ]  Visualizar informações de testes realizados;
 - [ ]  Relatório de testes realizados;
 
