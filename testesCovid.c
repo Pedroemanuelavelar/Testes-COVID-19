@@ -13,6 +13,7 @@ int main() {
     // Declaração de variavéis
     int i, numeroDeTestes;
     int opcao;
+    int posicao;
     int aux;
     int testesCancelados;
     char nome[50];
@@ -73,12 +74,13 @@ int main() {
 
             case 3:
                 
-                printf("\nInforme o nome da pessoa que voce deseja apagar do sistema: ");
-                gets(nome);
+                printf("\nInforme a posicao do teste que deseja cancelar: ");
+                scanf("%d", &posicao);
+                getchar();
                 clscr();
 
                 // Remove a pessoa com o nome digitado do sistema.
-                aux = removePerson(nome, dataPeople, &numeroDeTestes);
+                aux = removePerson(posicao, dataPeople, &numeroDeTestes);
 
                 // verifica se alguma pessoa foi ou não apagada do sistema.
                 if(aux == 1) {
@@ -90,6 +92,23 @@ int main() {
             break;
 
             case 4:
+            
+                // Limpa os "pontinhos" imprimidos.
+                for(i = 0; i < 2; i++){
+
+                    clscr();
+                    printf("\nSalvando os arquivos em 'testes.txt'");
+                    saving(3, 1);
+
+                }
+
+                clscr();
+                printf("Arquivo salvo!");
+                enter();
+
+                salvarTestes(dataPeople, numeroDeTestes);
+
+
             break;
 
             case 5:

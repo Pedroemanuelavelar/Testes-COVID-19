@@ -87,3 +87,16 @@ void endProg() {
     clscr();
 
 }
+
+// Imprime "pontinhos" em um determinado tempo.
+void saving(int pontinhos, int segundos){
+    
+    int i;
+
+    for(i = 0; i < pontinhos; i++){
+
+        printf(".");
+        sleep(segundos);
+
+    }
+}

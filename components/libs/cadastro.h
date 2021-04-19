@@ -14,6 +14,7 @@ typedef struct rotuloPessoa {
     char sexo;
     char bairro[100], resultadoTeste;
     int idade;
+    int valido;
 
 } Pessoa;
 
@@ -48,6 +49,8 @@ Pessoa regNewTests() {
     Pessoa pessoa;
     char name[15];
 
+    pessoa.valido=1;
+
     printf("Digite o seu nome: ");
     gets(pessoa.fullName);
 
@@ -78,28 +81,53 @@ Pessoa regNewTests() {
     scanf("%d", &pessoa.ano);
 
     getchar(); // Limpa o buffer
-    clscr();
 
-    /* Pegando o sexo M para masculino e F para feminino */
-    printf("Digite o seu sexo \"M\" para masculino e \"F\" feminino: ");
-    scanf("%c", &pessoa.sexo);
+    do {
 
-    getchar();
+        clscr();
+
+        /* Pegando o sexo M para masculino e F para feminino */
+        printf("Digite o seu sexo \"M\" para masculino e \"F\" feminino: ");
+        scanf("%c", &pessoa.sexo);
+
+        getchar();
+
+        // Converte de minusculo para maisculo
+        if(pessoa.sexo >= 'a' && pessoa.sexo <= 'z') {
+
+            pessoa.sexo -= 32;
+
+        }
+
+    } while(!(pessoa.sexo == 'M' || pessoa.sexo == 'F'));
+
     clscr();
 
     /* Pegando o bairro do usuário */
     printf("%s, informe o bairro: ", name);
     gets(pessoa.bairro);
 
-    clscr();
+    do {
 
-    /* Informando ao usuário que agora será armazenado os resultados dos testes */
-    printf("%s, agora sera armazenado os resultados dos testes da COVID-19: \n\n", name);
+        clscr();
 
-    printf("Digite \"P\" para positivo e \"N\" para negativo: ");
-    scanf("%c", &pessoa.resultadoTeste);
+        /* Informando ao usuário que agora será armazenado os resultados dos testes */
+        printf("%s, agora sera armazenado os resultados dos testes da COVID-19: \n\n", name);
 
-    getchar();
+        printf("Digite \"P\" para positivo e \"N\" para negativo: ");
+        scanf("%c", &pessoa.resultadoTeste);
+
+        // Converte de minusculo para maiusculo
+        if(pessoa.resultadoTeste >= 'a' && pessoa.resultadoTeste <= 'z') {
+
+            pessoa.resultadoTeste -= 32;
+
+        }
+
+        getchar();
+
+    } while(!(pessoa.resultadoTeste == 'P' || pessoa.resultadoTeste == 'N'));
+
     clscr();
     
     return pessoa;
@@ -295,6 +323,15 @@ void consultTests(char nome[], Pessoa dataPeople[], int numeroDeTestes) {
             printf("\nBairro = %s", dataPeople[posicao].bairro);
             printf("\nResultado do teste = %c", dataPeople[posicao].resultadoTeste);
 
+            if(dataPeople[posicao].valido == 1){
+
+                printf("\nValido = Sim");
+
+            }else{
+
+                printf("\nValido = Nao");
+            }
+
         }
 
     }
@@ -304,9 +341,10 @@ void consultTests(char nome[], Pessoa dataPeople[], int numeroDeTestes) {
 }
 
 // Função que apaga uma pessoa cadrastada no sistema.
-int removePerson (char nome[], Pessoa dataPeople[], int *numeroDeTestes) {
+int removePerson (int posicao, Pessoa dataPeople[], int *numeroDeTestes) {
 
-    int posicao, removido;
+    int removido;
+    char apagar[2];
 
     // variavel responsável por dizer se alguma pessoa cadastrada foi removida ou não.
     removido = 0;
@@ -317,26 +355,46 @@ int removePerson (char nome[], Pessoa dataPeople[], int *numeroDeTestes) {
     
     }else {
 
-        posicao = personSearch(nome, dataPeople, *numeroDeTestes);
-
-        if(posicao == -1){
+        if(posicao < 0 || posicao >= *numeroDeTestes){
 
             printf("\nPessoa nao encontrada no sistema.");
 
         }else {
 
-            // Inicia da posição da pessoa que desejo apagar e a sobscreve pela pessoa da próxima posição.
-            for(posicao;posicao<*numeroDeTestes;posicao++) {
+            printf("\nNome = %s", dataPeople[posicao].fullName);
+            printf("\nCPF = %s", dataPeople[posicao].cpf);
+            printf("\nData de nascimento: %d/%d/%d", dataPeople[posicao].dia, dataPeople[posicao].mes, dataPeople[posicao].ano);
+            printf("\nIdade = %d", dataPeople[posicao].idade);
+            printf("\nSexo = %c", dataPeople[posicao].sexo);
+            printf("\nBairro = %s", dataPeople[posicao].bairro);
+            printf("\nResultado do teste = %c", dataPeople[posicao].resultadoTeste);
 
-                dataPeople[posicao] = dataPeople[posicao+1];
+            if(dataPeople[posicao].valido == 1){
 
+                printf("\nValido = Sim");
+
+            }else{
+
+                printf("\nValido = Nao");
             }
 
-            (*numeroDeTestes)--;
-            removido = 1;
-            
-            printf("\nInformacoes do(a) %s removidas com sucesso.", nome);
+            printf("\n\nVoce deseja realmente cancelar essa pessoa do sistema?(Sim ou Nao):\n");
+            gets(apagar);
+            strupr(apagar);
+            clscr();
 
+            if(apagar[0] == 'S'){
+            
+                dataPeople[posicao].valido=0;
+
+                printf("\nO teste na posicao %d foi cancelado.", posicao);
+
+                removido=1;
+
+            }else{
+
+                printf("\nO teste na posicao %d nao foi cancelado.", posicao);
+            }
         }
 
     }
@@ -345,4 +403,49 @@ int removePerson (char nome[], Pessoa dataPeople[], int *numeroDeTestes) {
     
     return removido;
 
+}
+
+// Função responsavel para salver os testes em um "txt".
+void salvarTestes(Pessoa dataPeople[], int numeroDeTestes){
+    
+    int i;
+    char aux;
+    FILE *arq;
+
+    // Variavel que abre o arquivo no modo leitura.
+    arq = fopen("testes.txt", "r");
+
+    // Verifica se o arquivo existe.
+    if(arq != NULL) {
+
+        // Abre o arquivo no modo append.
+        arq = fopen("testes.txt", "a");
+
+        fprintf(arq, "\n\n");
+
+    }else {
+
+        // Se ele não existir abre no modo escrita.
+        arq = fopen("testes.txt", "w");
+
+    }
+
+    // Imprime os dados no arquivo "testes.txt".
+    for(i = 0; i < numeroDeTestes; i++) {
+
+        fprintf(arq, "%s", dataPeople[i].fullName); // Nome 
+        fprintf(arq, "\n%s", dataPeople[i].cpf); // CPF
+        fprintf(arq, "\n%d/%d/%d", dataPeople[i].dia, dataPeople[i].mes, dataPeople[i].ano); // Data de nascimento
+        fprintf(arq, "\n%d", dataPeople[i].idade); // Idade
+        fprintf(arq, "\n%c", dataPeople[i].sexo); // Sexo
+        fprintf(arq, "\n%s", dataPeople[i].bairro);// Bairro
+        fprintf(arq, "\n%c", dataPeople[i].resultadoTeste); // Resultado do teste
+        fprintf(arq, "\n%d", dataPeople[i].valido); // Retorna valido em bool.
+
+        if(i != numeroDeTestes - 1) {
+            fprintf(arq, "\n\n");
+        }
+    }
+
+    fclose(arq);
 }

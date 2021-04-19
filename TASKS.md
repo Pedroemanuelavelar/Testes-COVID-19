@@ -5,7 +5,6 @@
 ## To do
 </br>
 
-- [ ]  Salvar informações em arquivo;
 - [ ]  Visualizar informações de testes realizados;
 - [ ]  Relatório de testes realizados;
 
@@ -16,4 +15,5 @@
 - [x]  Cadastrar novos testes;
 - [x]  Consultar teste;
 - [x]  Cancelar teste;
+- [x]  Salvar informações em arquivo;
 
