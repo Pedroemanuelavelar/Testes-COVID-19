@@ -318,7 +318,24 @@ void consultTests(char nome[], Pessoa dataPeople[], int numeroDeTestes) {
             // Imprime as informações da pessoa encontrada no sistema.
             printf("\nNome = %s", dataPeople[posicao].fullName);
             printf("\nCPF = %s", dataPeople[posicao].cpf);
-            printf("\nData de nascimento: %d/%d/%d", dataPeople[posicao].dia, dataPeople[posicao].mes, dataPeople[posicao].ano);
+            printf("\nData de nascimento: ");
+
+            if(dataPeople[posicao].dia < 10) {
+
+                printf("0");
+
+            }
+
+            printf("%d/", dataPeople[posicao].dia);
+
+            if(dataPeople[posicao].mes < 10) {
+
+                printf("0");
+
+            }
+
+            printf("%d/", dataPeople[posicao].mes);
+            printf("%d", dataPeople[posicao].ano);
             printf("\nIdade = %d", dataPeople[posicao].idade);
             printf("\nSexo = %c", dataPeople[posicao].sexo);
             printf("\nBairro = %s", dataPeople[posicao].bairro);
@@ -364,7 +381,25 @@ int removePerson (int posicao, Pessoa dataPeople[], int *numeroDeTestes) {
 
             printf("\nNome = %s", dataPeople[posicao].fullName);
             printf("\nCPF = %s", dataPeople[posicao].cpf);
-            printf("\nData de nascimento: %d/%d/%d", dataPeople[posicao].dia, dataPeople[posicao].mes, dataPeople[posicao].ano);
+            
+            printf("\nData de nascimento: ");
+
+            if(dataPeople[posicao].dia < 10) {
+
+                printf("0");
+
+            }
+
+            printf("%d/", dataPeople[posicao].dia);
+
+            if(dataPeople[posicao].mes < 10) {
+
+                printf("0");
+
+            }
+
+            printf("%d/", dataPeople[posicao].mes);
+            printf("%d", dataPeople[posicao].ano);
             printf("\nIdade = %d", dataPeople[posicao].idade);
             printf("\nSexo = %c", dataPeople[posicao].sexo);
             printf("\nBairro = %s", dataPeople[posicao].bairro);
@@ -439,7 +474,24 @@ void salvarTestes(Pessoa dataPeople[], int numeroDeTestes) {
 
         fprintf(arq, "%s", dataPeople[i].fullName); // Nome 
         fprintf(arq, "\n%s", dataPeople[i].cpf); // CPF
-        fprintf(arq, "\n%d/%d/%d", dataPeople[i].dia, dataPeople[i].mes, dataPeople[i].ano); // Data de nascimento
+        printf("\nData de nascimento: ");
+
+            if(dataPeople[i].dia < 10) {
+
+                printf("0");
+
+            }
+
+            printf("%d/", dataPeople[i].dia);
+
+            if(dataPeople[i].mes < 10) {
+
+                printf("0");
+
+            }
+
+        printf("%d/", dataPeople[i].mes);
+        printf("%d\n", dataPeople[i].ano);
         fprintf(arq, "\n%d", dataPeople[i].idade); // Idade
         fprintf(arq, "\n%c", dataPeople[i].sexo); // Sexo
         fprintf(arq, "\n%s", dataPeople[i].bairro);// Bairro
@@ -478,7 +530,24 @@ void savingTests(Pessoa dataPeople[], int numeroDeTestes) {
             
             fprintf(arq, "%s", dataPeople[i].fullName); // Nome 
             fprintf(arq, "\n%s", dataPeople[i].cpf); // CPF
-            fprintf(arq, "\n%d/%d/%d", dataPeople[i].dia, dataPeople[i].mes, dataPeople[i].ano); // Data de nascimento
+            
+            if(dataPeople[i].dia < 10) {
+                
+                fprintf(arq, "0");
+
+            }
+
+            fprintf(arq, "%d/", dataPeople[i].dia); // Dia
+
+            if(dataPeople[i].mes < 10) {
+
+                fprintf(arq, "0");
+
+            }
+
+            fprintf(arq, "%d/", dataPeople[i].mes); // Mes
+            fprintf(arq, "%d", dataPeople[i].ano); // ano
+
             fprintf(arq, "\n%d", dataPeople[i].idade); // Idade
             fprintf(arq, "\n%c", dataPeople[i].sexo); // Sexo
             fprintf(arq, "\n%s", dataPeople[i].bairro);// Bairro
