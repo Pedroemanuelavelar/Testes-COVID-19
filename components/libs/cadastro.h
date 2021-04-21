@@ -48,7 +48,7 @@ Pessoa regNewTests() {
     Pessoa pessoa;
     char name[15];
 
-    pessoa.valido=1;
+    pessoa.valido = 1;
 
     printf("Digite o seu nome: ");
     gets(pessoa.fullName);
@@ -502,10 +502,10 @@ void savingTests(Pessoa dataPeople[], int numeroDeTestes) {
 // Função responsável por verificar os dados do arquivo "txt".
 void checksFile(Pessoa dataPeople[], int *numeroDeTestes) {
 
-    int i, j;
+    int i, j, miliSegundos;
     FILE *arquivo;
     char aux[100];
-   
+
     // Abre o arquivo no modo leitura.
     arquivo = fopen("testes.txt", "r");
 
@@ -520,8 +520,22 @@ void checksFile(Pessoa dataPeople[], int *numeroDeTestes) {
             *numeroDeTestes = atoi(aux);
             fgets(aux, 100, arquivo);
 
+            // Definindo quandos segundos o loading vai demorar
+            if(*numeroDeTestes > 30) {
+
+                miliSegundos = 0;
+
+            } else {
+
+                miliSegundos = 1000; // 1000 milisegundos => 1 segundo
+
+            }
+
             // Pega todas as informações do "txt".
             for(i = 0; i < *numeroDeTestes; i++) {
+
+                printf("Carregando os dados\n");
+                loading(i, *numeroDeTestes, miliSegundos);
 
                 fgets(dataPeople[i].fullName, 100, arquivo); // Nome.
                 dataPeople[i].fullName[strlen(dataPeople[i].fullName) - 1] = '\0';
@@ -572,7 +586,7 @@ void checksFile(Pessoa dataPeople[], int *numeroDeTestes) {
 
 // Imprime todos os testes feitos.
 void printAll(Pessoa dataPeople[], int numeroDeTestes) {
-   
+
     int i;
 
     printf("\nTestes feitos: %d\n", numeroDeTestes);
@@ -583,7 +597,7 @@ void printAll(Pessoa dataPeople[], int numeroDeTestes) {
             printf("\nNome = %s", dataPeople[i].fullName);
             printf("\nCPF = %s", dataPeople[i].cpf);
             printf("\nData de nascimento: ");
-           
+
             if(dataPeople[i].dia < 10) {
 
                 printf("0");
@@ -604,6 +618,19 @@ void printAll(Pessoa dataPeople[], int numeroDeTestes) {
             printf("\nSexo = %c", dataPeople[i].sexo);
             printf("\nBairro = %s", dataPeople[i].bairro);
             printf("\nResultado do teste = %c", dataPeople[i].resultadoTeste);
+            printf("\nTeste Valido? ");
+
+            // Imprime se é válido ou não
+            if(dataPeople[i].valido) {
+
+                printf("SIM");
+
+            } else {
+
+                printf("NAO");
+
+            }
+
             printf("\n");
 
     }

@@ -16,28 +16,27 @@ int main() {
     int posicao;
     int aux;
     int testesCancelados;
-    char nome[50];
+    char nome[50], detalhes[31];
     FILE *arq;
-    Pessoa dataPeople[100]; // Passando uma variavél correspondente ao struct Pessoa para acessar os campos
+    Pessoa dataPeople[1000]; // Passando uma variavél correspondente ao struct Pessoa para acessar os campos
 
     numeroDeTestes = 0;
     testesCancelados = 0;
+
+    clscr();
     
     // Abre o arquivo no modo leitura.
     arq = fopen("testes.txt", "r");
 
     // Verfica a existencia do arquivo "txt".
-    if(arq != NULL){
-
-        clscr();
-        printf("\n\n\n\n\n\n\n\n                                  Carrengando os dados");
-        saving(3, 450);
-        // Quantidade de potinhos e tempo em milisegundos.
+    if(arq != NULL) {
         
         checksFile(dataPeople, &numeroDeTestes);
     }
 
     fclose(arq);
+
+    strcpy(detalhes, " Para voltar ao menu digite 0 ");
 
     // Enquanto o a opção digitada não for 0 as opções são executadas.
     do {
@@ -51,15 +50,37 @@ int main() {
 
             case 1:
 
-                // Mensagem de Saudação da opção de Cadastro de testes.
-                printf("Ola, bem vindo a sessao de cadastro de testes!\n\n");
+                printf("\t\t------------------------------\n\n");
+                printf("\t\t\t   Aviso!!!\n\n");
+                printf("\t\t");
+                puts(detalhes);
+                printf("\n");
 
-                // Pegando a quantidade de testes que o usuario informou.
-                printf("Para proseguir com o registro, por favor informe quantos testes voce deseja cadastrar: ");
-                scanf("%d", &aux);
 
-                getchar(); // Limpando o Buffer.
-                clscr(); // Função que limpa a tela.
+                printf("\t\t");
+                // Imprime o traço 
+                for(i = 0; detalhes[i] != '\0'; i++) {
+
+                    printf("-");
+
+                }
+
+                printf("\n\n\n");
+
+                // Evitando entrada de números negativos
+                do {
+
+                    // Mensagem de Saudação da opção de Cadastro de testes.
+                    printf("Ola, bem vindo a sessao de cadastro de testes!\n\n");
+
+                    // Pegando a quantidade de testes que o usuario informou.
+                    printf("Para proseguir com o registro, por favor informe quantos testes voce deseja cadastrar: ");
+                    scanf("%d", &aux);
+
+                    getchar(); // Limpando o Buffer.
+                    clscr(); // Função que limpa a tela.
+
+                } while(!(aux >= 0));
 
                 /* De acordo com o numero de testes informado pelo usário, vai fazer um loop que contém as informações nome, data de nascimento, cpf, rua, idaderesultado e sexo não nesta ordem e calcula a idade. */
                 for(i = numeroDeTestes; i < numeroDeTestes + aux; i++) {
@@ -69,14 +90,18 @@ int main() {
 
                 }
                 
-                numeroDeTestes += aux;
+                if(aux != 0) {
 
-                clscr();
+                    numeroDeTestes += aux;
 
-                printf("Cadastro realizado com sucesso!");
+                    clscr();
 
-                enter();
+                    printf("Cadastro realizado com sucesso!");
 
+                    enter();
+
+                }
+                
             break;
 
             case 2:
@@ -115,7 +140,7 @@ int main() {
 
                     clscr();
                     printf("\nSalvando os arquivos em 'testes.txt'");
-                    saving(3, 1);
+                    saving(3, 400);
 
                 }
 

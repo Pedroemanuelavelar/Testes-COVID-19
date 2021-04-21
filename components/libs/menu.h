@@ -92,15 +92,43 @@ void endProg() {
 }
 
 // Imprime "pontinhos" em um determinado tempo.
-void saving(int pontinhos, int segundos) {
+void saving(int pontinhos, int miliSegundos) {
     
     int i;
 
     for(i = 0; i < pontinhos; i++) {
 
         printf(".");
-        usleep(segundos * 1000);
+        usleep(miliSegundos * 1000);
 
     }
+
+}
+
+// Efeito de barra de pogresso
+void loading(int i, int total, long int miliSegundos) {
+
+    int j;
+    float porcentagem, ultimaPosicao;
+    miliSegundos *= 1000; // Converte pra micro segundos
+
+    porcentagem = (((i + 1.0) / total) * 100); // Calculo de porcentagem
+    
+    // Define até onde vai ser preenchido
+    ultimaPosicao = ((20 * porcentagem) / 100);
+
+    printf("%.0f%% ", porcentagem); // imprime por exemplo 50%
+
+    // Preenche a barra
+    for(j = 0; j < ultimaPosicao; j++) {
+
+        printf("%c", 219); // Printando a barra
+
+    }
+
+    printf("\n\n");
+
+    usleep(miliSegundos);
+    system("cls || clear");
 
 }
