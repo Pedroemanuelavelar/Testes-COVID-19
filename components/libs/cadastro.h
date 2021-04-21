@@ -500,7 +500,7 @@ void savingTests(Pessoa dataPeople[], int numeroDeTestes) {
 }
 
 // Função responsável por verificar os dados do arquivo "txt".
-void verificaArquivo(Pessoa dataPeople[], int *numeroDeTestes) {
+void checksFile(Pessoa dataPeople[], int *numeroDeTestes) {
 
     int i, j;
     FILE *arquivo;
@@ -571,7 +571,7 @@ void verificaArquivo(Pessoa dataPeople[], int *numeroDeTestes) {
 }
 
 // Imprime todos os testes feitos.
-void imprimeTodos(Pessoa dataPeople[], int numeroDeTestes) {
+void printAll(Pessoa dataPeople[], int numeroDeTestes) {
    
     int i;
 

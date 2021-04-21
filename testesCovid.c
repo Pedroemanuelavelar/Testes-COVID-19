@@ -34,7 +34,7 @@ int main() {
         saving(3, 450);
         // Quantidade de potinhos e tempo em milisegundos.
         
-        verificaArquivo(dataPeople, &numeroDeTestes);
+        checksFile(dataPeople, &numeroDeTestes);
     }
 
     fclose(arq);
@@ -129,7 +129,7 @@ int main() {
 
             case 5:
 
-                imprimeTodos(dataPeople, numeroDeTestes);
+                printAll(dataPeople, numeroDeTestes);
 
             break;
 
