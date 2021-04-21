@@ -17,43 +17,60 @@ int main() {
     int aux;
     int testesCancelados;
     char nome[50];
+    FILE *arq;
     Pessoa dataPeople[100]; // Passando uma variavél correspondente ao struct Pessoa para acessar os campos
 
     numeroDeTestes = 0;
     testesCancelados = 0;
+    
+    // Abre o arquivo no modo leitura.
+    arq = fopen("testes.txt", "r");
 
-    // Enquanto o a opção digitada não for 0 as opções são executadas
+    // Verfica a existencia do arquivo "txt".
+    if(arq != NULL){
+
+        clscr();
+        printf("\n\n\n\n\n\n\n\n                                  Carrengando os dados");
+        saving(3, 450);
+        // Quantidade de potinhos e tempo em milisegundos.
+        
+        verificaArquivo(dataPeople, &numeroDeTestes);
+    }
+
+    fclose(arq);
+
+    // Enquanto o a opção digitada não for 0 as opções são executadas.
     do {
 
         opcao = menu();
 
         clscr();
 
-        // Fazendo as opções do menu funcionar
+        // Fazendo as opções do menu funcionar.
         switch(opcao) {
 
             case 1:
 
-                // Mensagem de Saudação da opção de Cadastro de testes
+                // Mensagem de Saudação da opção de Cadastro de testes.
                 printf("Ola, bem vindo a sessao de cadastro de testes!\n\n");
 
-                // Pegando a quantidade de testes que o usuario informou
+                // Pegando a quantidade de testes que o usuario informou.
                 printf("Para proseguir com o registro, por favor informe quantos testes voce deseja cadastrar: ");
                 scanf("%d", &aux);
 
-                numeroDeTestes += aux;
+                getchar(); // Limpando o Buffer.
+                clscr(); // Função que limpa a tela.
 
-                getchar(); // Limpando o Buffer
-                clscr(); // Função que limpa a tela
-
-                /* De acordo com o numero de testes informado pelo usário, vai fazer um loop que contém as informações nome, data de nascimento, cpf, rua, idaderesultado e sexo não nesta ordem e calcula a idade */
-                for(i = 0; i < aux; i++) {
+                /* De acordo com o numero de testes informado pelo usário, vai fazer um loop que contém as informações nome, data de nascimento, cpf, rua, idaderesultado e sexo não nesta ordem e calcula a idade. */
+                for(i = numeroDeTestes; i < numeroDeTestes + aux; i++) {
                     
                     dataPeople[i] = regNewTests();
                     dataPeople[i].idade = yearsOld(dataPeople[i]);
 
                 }
                 
+                numeroDeTestes += aux;
+
                 clscr();
 
                 printf("Cadastro realizado com sucesso!");
@@ -93,7 +110,7 @@ int main() {
 
             case 4:
             
-                // Efeito limpa os "pontinhos" imprimidos.
+                // Limpa os "pontinhos" imprimidos.
                 for(i = 0; i < 2; i++){
 
                     clscr();
@@ -102,7 +119,7 @@ int main() {
 
                 }
 
-                savingTests(dataPeople, numeroDeTestes - testesCancelados);
+                savingTests(dataPeople, numeroDeTestes-testesCancelados);
 
                 clscr();
                 printf("Arquivo salvo!");
@@ -111,6 +128,9 @@ int main() {
             break;
 
             case 5:
+
+                imprimeTodos(dataPeople, numeroDeTestes);
+
             break;
 
             case 6:
