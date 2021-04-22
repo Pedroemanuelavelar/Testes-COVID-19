@@ -95,15 +95,9 @@ int main() {
                     numeroDeTestes += aux;
 
                     clscr();
-<<<<<<< HEAD
 
                     printf("Cadastro realizado com sucesso!");
 
-=======
-
-                    printf("Cadastro realizado com sucesso!");
-
->>>>>>> 602141fb3fda41272fb69bd0f99b6636b15fb047
                     enter();
 
                 }

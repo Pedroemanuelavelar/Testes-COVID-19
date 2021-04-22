@@ -481,10 +481,6 @@ void savingTests(Pessoa dataPeople[], int numeroDeTestes) {
             fprintf(arq, "%d/", dataPeople[i].mes); // Mes.
 
             fprintf(arq, "%d", dataPeople[i].ano);// Ano.
-<<<<<<< HEAD
-            fprintf(arq, "\n%d", dataPeople[i].idade); // Idade.
-=======
->>>>>>> 602141fb3fda41272fb69bd0f99b6636b15fb047
             fprintf(arq, "\n%c", dataPeople[i].sexo); // Sexo.
             fprintf(arq, "\n%s", dataPeople[i].bairro);// Bairro.
             fprintf(arq, "\n%c", dataPeople[i].resultadoTeste); // Resultado do teste.
@@ -562,12 +558,7 @@ void checksFile(Pessoa dataPeople[], int *numeroDeTestes) {
                 dataPeople[i].mes = atoi(&aux[3]); // Mes.
                 dataPeople[i].ano = atoi(&aux[6]); // Ano.
 
-<<<<<<< HEAD
-                fgets(aux, 100, arquivo);
-                dataPeople[i].idade = atoi(aux); // Idade.
-=======
                 dataPeople[i].idade = yearsOld(dataPeople[i]);
->>>>>>> 602141fb3fda41272fb69bd0f99b6636b15fb047
 
                 fgets(aux, 100, arquivo);
                 dataPeople[i].sexo = aux[0]; // Sexo.
@@ -584,11 +575,7 @@ void checksFile(Pessoa dataPeople[], int *numeroDeTestes) {
 
         }
 
-<<<<<<< HEAD
-    }   
-=======
     }
->>>>>>> 602141fb3fda41272fb69bd0f99b6636b15fb047
 
     // Fecha o arquivo.
     fclose(arquivo);
@@ -648,8 +635,6 @@ void printAll(Pessoa dataPeople[], int numeroDeTestes) {
 
     enter();
 
-<<<<<<< HEAD
-=======
 }
 
 // Função que verifica a quantidade de pessoas infectados.
@@ -757,5 +742,4 @@ void printReport(Pessoa dataPeople[], int numeroDeTestes){
 
     enter();
 
->>>>>>> 602141fb3fda41272fb69bd0f99b6636b15fb047
 }
