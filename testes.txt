@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 31
 
 Vinicius
@@ -145,5 +146,43 @@ Vinicius
 02/02/2002
 19
 M
+=======
+6
+
+Vinicius
+1234567890
+01/03/2001
+M
+Centro
+N
+Vinicius
+1234567890
+01/03/2001
+M
+Centro
+P
+Joao
+156165
+27/06/1900
+M
+Ali
+P
+Joao
+156165
+27/06/1900
+M
+Ali
+N
+Carla
+56415664
+08/04/2005
+F
+Centro
+N
+Carla
+56415664
+08/04/2005
+F
+>>>>>>> 602141fb3fda41272fb69bd0f99b6636b15fb047
 Centro
 P
