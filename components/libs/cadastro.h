@@ -107,7 +107,6 @@ Pessoa regNewTests() {
     gets(pessoa.bairro);
 
     do {
-<<<<<<< HEAD
 
         clscr();
 
@@ -120,20 +119,6 @@ Pessoa regNewTests() {
         // Converte de minusculo para maiusculo
         if(pessoa.resultadoTeste >= 'a' && pessoa.resultadoTeste <= 'z') {
 
-=======
-
-        clscr();
-
-        /* Informando ao usuário que agora será armazenado os resultados dos testes */
-        printf("%s, agora sera armazenado os resultados dos testes da COVID-19: \n\n", name);
-
-        printf("Digite \"P\" para positivo e \"N\" para negativo: ");
-        scanf("%c", &pessoa.resultadoTeste);
-
-        // Converte de minusculo para maiusculo
-        if(pessoa.resultadoTeste >= 'a' && pessoa.resultadoTeste <= 'z') {
-
->>>>>>> 602141fb3fda41272fb69bd0f99b6636b15fb047
             pessoa.resultadoTeste -= 32;
 
         }
