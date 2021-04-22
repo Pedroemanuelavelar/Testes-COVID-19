@@ -638,15 +638,15 @@ void printAll(Pessoa dataPeople[], int numeroDeTestes) {
 }
 
 // Função que verifica a quantidade de pessoas infectados.
-int positiveTests(Pessoa dataPeople[], int numeroDeTestes){
+int positiveTests(Pessoa dataPeople[], int numeroDeTestes) {
 
     int i, testesPositivos;
 
     testesPositivos = 0;
 
-    for(i = 0; i < numeroDeTestes; i++){
+    for(i = 0; i < numeroDeTestes; i++) {
 
-        if(dataPeople[i].resultadoTeste == 'P'){
+        if(dataPeople[i].resultadoTeste == 'P') {
 
             testesPositivos++;
         }
@@ -658,17 +658,17 @@ int positiveTests(Pessoa dataPeople[], int numeroDeTestes){
 }
 
 // Função que verifica a quantidade de jovens infectados.
-int infectedsYoungs(Pessoa dataPeople[], int numeroDeTestes){
+int infectedsYoungs(Pessoa dataPeople[], int numeroDeTestes) {
 
     int i, jovensInfectados;
 
     jovensInfectados = 0;
 
-    for(i = 0; i < numeroDeTestes; i++){
+    for(i = 0; i < numeroDeTestes; i++) {
 
-        if(dataPeople[i].idade < 20){
+        if(dataPeople[i].idade < 20) {
 
-            if(dataPeople[i].resultadoTeste == 'N'){
+            if(dataPeople[i].resultadoTeste == 'N') {
 
                 jovensInfectados++;
 
@@ -683,17 +683,17 @@ int infectedsYoungs(Pessoa dataPeople[], int numeroDeTestes){
 }
 
 // Função que verifica a quantidade de adultos infectados.
-int  infectedsAdults(Pessoa dataPeople[], int numeroDeTestes){
+int  infectedsAdults(Pessoa dataPeople[], int numeroDeTestes) {
 
     int i, adultosInfectados;
 
     adultosInfectados = 0;
 
-    for(i = 0; i < numeroDeTestes; i++){
+    for(i = 0; i < numeroDeTestes; i++) {
 
         if(dataPeople[i].idade >= 20 && dataPeople[i].idade < 60){
 
-            if(dataPeople[i].resultadoTeste == 'N'){
+            if(dataPeople[i].resultadoTeste == 'N') {
 
                 adultosInfectados++;
 
@@ -708,7 +708,7 @@ int  infectedsAdults(Pessoa dataPeople[], int numeroDeTestes){
 }
 
 // Função responsável para calculo de porcentagem.
-float percentage(int valor, int total){
+float percentage(int valor, int total) {
 
     float porcentagem;
 
@@ -718,7 +718,7 @@ float percentage(int valor, int total){
 }
 
 // Imprime os dados da opção 6.
-void printReport(Pessoa dataPeople[], int numeroDeTestes){
+void printReport(Pessoa dataPeople[], int numeroDeTestes) {
 
     int pessoasInfectadas, pessoasNaoInfectadas, jovensInfectados, adultosInfectados, IdososInfectados;
 
