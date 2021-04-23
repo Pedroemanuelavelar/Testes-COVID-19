@@ -444,7 +444,7 @@ int removePerson(int posicao, Pessoa dataPeople[], int *numeroDeTestes) {
 }
 
 // Função responsavel para salver os testes em um "txt".
-void savingTests(Pessoa dataPeople[], int numeroDeTestes) {
+void savingTests(Pessoa dataPeople[], int numeroDeTestes, int testesCancelados) {
 
     int i;
     char aux;
@@ -454,7 +454,7 @@ void savingTests(Pessoa dataPeople[], int numeroDeTestes) {
     arq = fopen("testes.txt", "w");
 
     // Imprime os numeros de testes no arquivo.
-    fprintf(arq, "%d\n\n", numeroDeTestes);
+    fprintf(arq, "%d\n\n", numeroDeTestes - testesCancelados);
 
     // Imprime os dados no arquivo "testes.txt".
     for(i = 0; i < numeroDeTestes; i++) {

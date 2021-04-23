@@ -144,7 +144,7 @@ int main() {
 
                 }
 
-                savingTests(dataPeople, numeroDeTestes-testesCancelados);
+                savingTests(dataPeople, numeroDeTestes, testesCancelados);
 
                 clscr();
                 printf("Arquivo salvo!");
