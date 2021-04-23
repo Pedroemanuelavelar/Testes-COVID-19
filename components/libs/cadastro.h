@@ -688,11 +688,7 @@ int infectedsYoungs(Pessoa dataPeople[], int numeroDeTestes) {
 
         if(dataPeople[i].idade < 20) {
 
-<<<<<<< HEAD
-            if(dataPeople[i].resultadoTeste == 'N') {
-=======
             if(dataPeople[i].resultadoTeste == 'P'){
->>>>>>> 88a168305695406fc98eb4001b071025400efdfe
 
                 jovensInfectados++;
 
@@ -717,11 +713,7 @@ int  infectedsAdults(Pessoa dataPeople[], int numeroDeTestes) {
 
         if(dataPeople[i].idade >= 20 && dataPeople[i].idade < 60){
 
-<<<<<<< HEAD
-            if(dataPeople[i].resultadoTeste == 'N') {
-=======
             if(dataPeople[i].resultadoTeste == 'P'){
->>>>>>> 88a168305695406fc98eb4001b071025400efdfe
 
                 adultosInfectados++;
 
