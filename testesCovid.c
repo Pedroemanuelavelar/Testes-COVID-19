@@ -18,19 +18,29 @@ int main() {
     int testesCancelados;
     char nome[50], detalhes[31];
     FILE *arq;
-    Pessoa dataPeople[1000]; // Passando uma variavél correspondente ao struct Pessoa para acessar os campos
+    Pessoa *dataPeople; // Passando uma variavél correspondente ao struct Pessoa para acessar os campos
 
     numeroDeTestes = 0;
     testesCancelados = 0;
 
     clscr();
-    
+
     // Abre o arquivo no modo leitura.
     arq = fopen("testes.txt", "r");
 
     // Verfica a existencia do arquivo "txt".
     if(arq != NULL) {
-        
+
+        numeroDeTestes += file_number_tests();
+
+        dataPeople = (Pessoa *) malloc(numeroDeTestes * sizeof(Pessoa));
+
+        if(dataPeople == NULL){
+
+            printf("Sem espaco suficiente na memoria.\n");
+            exit(1);
+        }
+
         checksFile(dataPeople, &numeroDeTestes);
     }
 
@@ -76,6 +86,30 @@ int main() {
                     // Pegando a quantidade de testes que o usuario informou.
                     printf("Para proseguir com o registro, por favor informe quantos testes voce deseja cadastrar: ");
                     scanf("%d", &aux);
+
+                    if(numeroDeTestes > 0) {
+                        
+                        dataPeople = (Pessoa *) realloc(dataPeople,(numeroDeTestes+aux) * sizeof(Pessoa));
+
+                        if(dataPeople == NULL){
+
+                            printf("Sem espaco suficiente na memoria.\n");
+                            exit(1);
+
+                        }
+
+                    }else{
+
+                        dataPeople = (Pessoa *) malloc((numeroDeTestes + aux) * sizeof(Pessoa));
+
+                        if(dataPeople == NULL){
+
+                            printf("Sem espaço suficiente na memoria.\n");
+                            exit(1);
+
+                        }
+
+                    }
 
                     getchar(); // Limpando o Buffer.
                     clscr(); // Função que limpa a tela.
@@ -167,6 +201,8 @@ int main() {
         }
 
     } while(opcao != 0); 
+
+    free(dataPeople);
 
     // Mensagem para teclar ENTER para fechar o programa
     endProg();

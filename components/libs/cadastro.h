@@ -498,6 +498,26 @@ void savingTests(Pessoa dataPeople[], int numeroDeTestes, int testesCancelados) 
 
 }
 
+int file_number_tests(){
+
+    FILE *arquivo;
+    int testes;
+    char number[100];
+
+    arquivo = fopen("testes.txt", "r");
+
+    if(arquivo != NULL) {
+
+        fgets(number, 100, arquivo);
+    }
+
+    testes = atoi(number);
+
+    fclose(arquivo);
+
+    return testes;
+}
+
 // Função responsável por verificar os dados do arquivo "txt".
 void checksFile(Pessoa dataPeople[], int *numeroDeTestes) {
 
