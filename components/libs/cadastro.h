@@ -664,11 +664,13 @@ int positiveTests(Pessoa dataPeople[], int numeroDeTestes) {
 
     testesPositivos = 0;
 
+    // Contando o numero de pessoas com o resultado Positivo
     for(i = 0; i < numeroDeTestes; i++) {
 
         if(dataPeople[i].resultadoTeste == 'P') {
 
             testesPositivos++;
+
         }
 
     }
@@ -746,6 +748,7 @@ void printReport(Pessoa dataPeople[], int numeroDeTestes) {
     pessoasNaoInfectadas = numeroDeTestes - pessoasInfectadas;
 
     jovensInfectados = infectedsYoungs(dataPeople, numeroDeTestes);
+
     adultosInfectados = infectedsAdults(dataPeople, numeroDeTestes);
     IdososInfectados = pessoasInfectadas - jovensInfectados - adultosInfectados;
 

@@ -14,7 +14,7 @@ int main() {
     int i, numeroDeTestes;
     int opcao;
     int posicao;
-    int aux;
+    int aux; // variavél auxiliar 
     int testesCancelados;
     char nome[50], detalhes[31];
     FILE *arq;
@@ -77,41 +77,33 @@ int main() {
 
                 printf("\n\n\n");
 
+                // Mensagem de Saudação da opção de Cadastro de testes.
+                printf("Ola, bem vindo a sessao de cadastro de testes!\n\n");
+
                 // Evitando entrada de números negativos
                 do {
-
-                    // Mensagem de Saudação da opção de Cadastro de testes.
-                    printf("Ola, bem vindo a sessao de cadastro de testes!\n\n");
 
                     // Pegando a quantidade de testes que o usuario informou.
                     printf("Para proseguir com o registro, por favor informe quantos testes voce deseja cadastrar: ");
                     scanf("%d", &aux);
 
-                    if(numeroDeTestes > 0) {
-                        
-                        dataPeople = (Pessoa *) realloc(dataPeople,(numeroDeTestes+aux) * sizeof(Pessoa));
+                    getchar(); // Limpando o Buffer.
 
-                        if(dataPeople == NULL){
+                    if(aux > 0) {
+                        
+                        // Aumentando o vetor para cadastrar mais pessoas
+                        dataPeople = (Pessoa *) realloc(dataPeople,(numeroDeTestes + aux) * sizeof(Pessoa));
+
+                        if(dataPeople == NULL) {
 
                             printf("Sem espaco suficiente na memoria.\n");
                             exit(1);
 
                         }
 
-                    }else{
-
-                        dataPeople = (Pessoa *) malloc((numeroDeTestes + aux) * sizeof(Pessoa));
-
-                        if(dataPeople == NULL){
-
-                            printf("Sem espaço suficiente na memoria.\n");
-                            exit(1);
-
-                        }
 
                     }
-
-                    getchar(); // Limpando o Buffer.
+                        
                     clscr(); // Função que limpa a tela.
 
                 } while(!(aux >= 0));
@@ -139,24 +131,76 @@ int main() {
             break;
 
             case 2:
+
+                printf("\t\t------------------------------\n\n");
+                printf("\t\t\t   Aviso!!!\n\n");
+                printf("\t\t");
+                puts(detalhes);
+                printf("\n");
+
+
+                printf("\t\t");
+
+                // Imprime o traço 
+                for(i = 0; detalhes[i] != '\0'; i++) {
+
+                    printf("-");
+
+                }
+
+                printf("\n\n\n");
+
                 
                 printf("\nInforme um nome para consultar os testes: ");
                 gets(nome);
                 clscr();
+
+                // Se o usuário quiser sair
+                if(nome[0] == '0') {
+
+                    //volta para o menu
+                    continue;
+
+                }
 
                 consultTests(nome, dataPeople, numeroDeTestes);
 
             break;
 
             case 3:
+
+                printf("\t\t------------------------------\n\n");
+                printf("\t\t\t   Aviso!!!\n\n");
+                printf("\t\t");
+                puts(detalhes);
+                printf("\n");
+
+
+                printf("\t\t");
+
+                // Imprime o traço 
+                for(i = 0; detalhes[i] != '\0'; i++) {
+
+                    printf("-");
+
+                }
+
+                printf("\n\n\n");
                 
-                printf("\nInforme a posicao do teste que deseja cancelar: ");
+                printf("\nInforme o numero do teste que deseja cancelar: ");
                 scanf("%d", &posicao);
                 getchar();
                 clscr();
 
+                // Se o usuário quiser sair
+                if(posicao == 0) {
+
+                    //volta para o menu
+                    continue;
+
+                }
                 // Remove a pessoa com o nome digitado do sistema.
-                aux = removePerson(posicao, dataPeople, &numeroDeTestes);
+                aux = removePerson(posicao - 1, dataPeople, &numeroDeTestes);
 
                 // verifica se alguma pessoa foi ou não apagada do sistema.
                 if(aux == 1) {
@@ -168,7 +212,7 @@ int main() {
             break;
 
             case 4:
-            
+
                 // Limpa os "pontinhos" imprimidos.
                 for(i = 0; i < 2; i++){
 
@@ -202,6 +246,7 @@ int main() {
 
     } while(opcao != 0); 
 
+    // Libera o espaço alocado na memória principal
     free(dataPeople);
 
     // Mensagem para teclar ENTER para fechar o programa
