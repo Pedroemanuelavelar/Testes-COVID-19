@@ -73,6 +73,7 @@ void endProg() {
     
     printf("Creditos:\n");
     printf("-----------------------------------------------------------\n\n");
+    printf("Repositorio: https://github.com/Pedroemanuelavelar/Testes-COVID-19\n\n");
     printf("Programa Desenvolvido por:\n\n");
     printf("* Carlos Eduardo Maximo - 6962\n");
     printf("* Pedro Emanuel de Avelar Sousa de Almeida - 6965\n");
