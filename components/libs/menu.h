@@ -133,3 +133,23 @@ void loading(int i, int total, long int miliSegundos) {
     system("cls || clear");
 
 }
+
+// Responsavel por colocar extensão .txt no arquivo
+void txt(char nomeArquivo[]) {
+
+    int i;
+
+    for(i = 0; nomeArquivo[i] != '\0' && nomeArquivo[i] != '.'; i++);
+
+    // Verificando se existe uma extensão, caso não haja, adiciona o .txt
+    if(nomeArquivo[i] != '.') {
+
+        nomeArquivo[i] = '.';
+        nomeArquivo[i + 1] = 't';
+        nomeArquivo[i + 2] = 'x';
+        nomeArquivo[i + 3] = 't';
+        nomeArquivo[i + 4] = '\0';
+
+    }
+
+}
