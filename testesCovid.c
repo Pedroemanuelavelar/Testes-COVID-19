@@ -42,7 +42,7 @@ int main(int argc, char *argv[]) {
         // Verfica a existencia do arquivo "txt".
         if(arq != NULL) {
 
-            numeroDeTestes += file_number_tests();
+            numeroDeTestes += file_number_tests(argv[1]);
 
             dataPeople = (Pessoa *) malloc(numeroDeTestes * sizeof(Pessoa));
 
@@ -52,7 +52,8 @@ int main(int argc, char *argv[]) {
                 exit(1);
             }
 
-            checksFile(dataPeople, &numeroDeTestes);
+            checksFile(argv[1], dataPeople, &numeroDeTestes);
+
         }
 
         fclose(arq);

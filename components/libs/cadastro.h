@@ -425,7 +425,7 @@ int removePerson(int posicao, Pessoa dataPeople[], int *numeroDeTestes) {
 
                 printf("\nO teste na posicao %d foi cancelado.", posicao);
 
-                removido=1;
+                removido = 1;
 
             }else {
 
@@ -458,7 +458,7 @@ void savingTests(char nomeArquivo[] ,Pessoa dataPeople[], int numeroDeTestes, in
     // Imprime os numeros de testes no arquivo.
     fprintf(arq, "%d\n\n", numeroDeTestes - testesCancelados);
 
-    // Imprime os dados no arquivo "testes.txt".
+    // Imprime os dados no arquivo ".txt".
     for(i = 0; i < numeroDeTestes; i++) {
 
         if(dataPeople[i].valido) {
@@ -500,17 +500,18 @@ void savingTests(char nomeArquivo[] ,Pessoa dataPeople[], int numeroDeTestes, in
 
 }
 
-int file_number_tests(){
+int file_number_tests(char nomeArquivo[]){
 
     FILE *arquivo;
     int testes;
     char number[100];
 
-    arquivo = fopen("testes.txt", "r");
+    arquivo = fopen(nomeArquivo, "r");
 
-    if(arquivo != NULL) {
+    if(arquivo == NULL) {
 
         fgets(number, 100, arquivo);
+
     }
 
     testes = atoi(number);
@@ -521,14 +522,14 @@ int file_number_tests(){
 }
 
 // Função responsável por verificar os dados do arquivo "txt".
-void checksFile(Pessoa dataPeople[], int *numeroDeTestes) {
+void checksFile(char nomeArquivo[] ,Pessoa dataPeople[], int *numeroDeTestes) {
 
     int i, j, miliSegundos;
     FILE *arquivo;
     char aux[100];
 
     // Abre o arquivo no modo leitura.
-    arquivo = fopen("testes.txt", "r");
+    arquivo = fopen(nomeArquivo, "r");
 
     if(arquivo != NULL) {
         
