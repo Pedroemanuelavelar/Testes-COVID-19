@@ -8,7 +8,7 @@
 
 #include "./components/libs/cadastro.h" // Custom lib
 
-int main() {
+int main(int argc, char *argv[]) {
 
     // Declaração de variavéis
     int i, numeroDeTestes;
@@ -23,28 +23,41 @@ int main() {
     numeroDeTestes = 0;
     testesCancelados = 0;
 
+
+    // Debug dos parametros da main()
+    // printf("%s", argv[1]);
+    
+    // getchar(); 
+
     clscr();
 
-    // Abre o arquivo no modo leitura.
-    arq = fopen("testes.txt", "r");
+    // Verifica se foi passado como parametro o nome do arquivo na execução
+    if(argc > 1) {
 
-    // Verfica a existencia do arquivo "txt".
-    if(arq != NULL) {
+        txt(argv[1]);
 
-        numeroDeTestes += file_number_tests();
+        // Abre o arquivo no modo leitura.
+        arq = fopen(argv[1],"r");
 
-        dataPeople = (Pessoa *) malloc(numeroDeTestes * sizeof(Pessoa));
+        // Verfica a existencia do arquivo "txt".
+        if(arq != NULL) {
 
-        if(dataPeople == NULL){
+            numeroDeTestes += file_number_tests();
 
-            printf("Sem espaco suficiente na memoria.\n");
-            exit(1);
+            dataPeople = (Pessoa *) malloc(numeroDeTestes * sizeof(Pessoa));
+
+            if(dataPeople == NULL){
+
+                printf("Sem espaco suficiente na memoria.\n");
+                exit(1);
+            }
+
+            checksFile(dataPeople, &numeroDeTestes);
         }
 
-        checksFile(dataPeople, &numeroDeTestes);
-    }
+        fclose(arq);
 
-    fclose(arq);
+    }
 
     strcpy(detalhes, " Para voltar ao menu digite 0 ");
 
@@ -213,16 +226,19 @@ int main() {
 
             case 4:
 
+                printf("Qual o nome do arquivo no qual voce deseja salvar os dados?\n");
+                gets(nome);
+
                 // Limpa os "pontinhos" imprimidos.
                 for(i = 0; i < 2; i++){
 
                     clscr();
-                    printf("\nSalvando os arquivos em 'testes.txt'");
+                    printf("\nSalvando os arquivos em '%s'", nome);
                     saving(3, 400);
 
                 }
 
-                savingTests(dataPeople, numeroDeTestes, testesCancelados);
+                savingTests(nome, dataPeople, numeroDeTestes, testesCancelados);
 
                 clscr();
                 printf("Arquivo salvo!");
@@ -255,3 +271,4 @@ int main() {
     return 0;
 
 }
+
