@@ -416,7 +416,7 @@ int removePerson(int posicao, Pessoa dataPeople[], int *numeroDeTestes) {
 
             printf("\n\nVoce deseja realmente cancelar essa pessoa do sistema?(Sim ou Nao):\n");
             gets(apagar);
-            strupr(apagar);
+            uppercase(apagar);
             clscr();
 
             if(apagar[0] == 'S') {

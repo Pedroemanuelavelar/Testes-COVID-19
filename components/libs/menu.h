@@ -153,3 +153,22 @@ void txt(char nomeArquivo[]) {
     }
 
 }
+
+// Alternativa da strupr da [string.h] funcional em todos os Sistemas operacionais
+/* Converte uma string de minuscula para maiuscula */
+void uppercase(char string[]) {
+
+    int i;
+
+    for(i = 0; string[i] != '\0'; i++) {
+
+        // Converte de minusculo para maiusculo
+        if(string[i] >= 'a' && string[i] <= 'z') {
+
+            string[i] -= 32; // a => 97 e A => 65 = 'a' - 'A'
+
+        }
+
+    }
+
+}
