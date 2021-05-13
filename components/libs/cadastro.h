@@ -508,17 +508,18 @@ int file_number_tests(char nomeArquivo[]){
 
     arquivo = fopen(nomeArquivo, "r");
 
-    if(arquivo == NULL) {
+    if(arquivo != NULL) {
 
         fgets(number, 100, arquivo);
 
+        testes = atoi(number);
+
+        fclose(arquivo);
+
+        return testes;
+
     }
 
-    testes = atoi(number);
-
-    fclose(arquivo);
-
-    return testes;
 }
 
 // Função responsável por verificar os dados do arquivo "txt".
@@ -560,10 +561,10 @@ void checksFile(char nomeArquivo[] ,Pessoa dataPeople[], int *numeroDeTestes) {
                 loading(i, *numeroDeTestes, miliSegundos);
 
                 fgets(dataPeople[i].fullName, 100, arquivo); // Nome.
-                dataPeople[i].fullName[strlen(dataPeople[i].fullName) - 1] = '\0';
+                killN(dataPeople[i].fullName);
 
                 fgets(dataPeople[i].cpf, 20, arquivo); // CPF.
-                dataPeople[i].cpf[strlen(dataPeople[i].cpf) - 1] = '\0';
+                killN(dataPeople[i].cpf);
 
                 fgets(aux, 100, arquivo);
 
@@ -587,7 +588,7 @@ void checksFile(char nomeArquivo[] ,Pessoa dataPeople[], int *numeroDeTestes) {
                 dataPeople[i].sexo = aux[0]; // Sexo.
 
                 fgets(dataPeople[i].bairro, 100, arquivo);
-                dataPeople[i].bairro[strlen(dataPeople[i].bairro) - 1] = '\0'; // Bairro.
+                killN(dataPeople[i].bairro);
             
                 fgets(aux, 100, arquivo);
                 dataPeople[i].resultadoTeste = aux[0]; // Resultado dos testes.
