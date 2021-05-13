@@ -173,6 +173,7 @@ void uppercase(char string[]) {
 
 }
 
+// Elimina todos os \n de strings salvas nos arquivos
 void killN (char string[]){
 
     int i;
